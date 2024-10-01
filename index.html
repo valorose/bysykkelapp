@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Speeds in Bergen</title>
+</head>
+<body>
+    <h1>Top 3 Speeds at Bergen Stations</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Station</th>
+                <th>Speed</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for speed in top_speeds %}
+                <tr>
+                    <td>{{ speed.station_name }}</td>
+                    <td>{{ speed.speed }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
