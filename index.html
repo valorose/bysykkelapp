@@ -7,20 +7,24 @@
 </head>
 <body>
     <h1>Top 3 Speeds from Bergen Sentrum</h1>
-
+    
     {% for destination, speeds in top_speeds.items() %}
         <h2>Destination: {{ destination }}</h2>
-        <table border="1">
-            <tr>
-                <th>Speed (km/h)</th>
-                <th>Duration (seconds)</th>
-            </tr>
-            {% for speed in speeds.itertuples() %}
-            <tr>
-                <td>{{ speed.speed }}</td>
-                <td>{{ speed.duration }}</td>
-            </tr>
-            {% endfor %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Speed (km/h)</th>
+                    <th>Duration (seconds)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for speed in speeds.itertuples() %}
+                    <tr>
+                        <td>{{ speed.speed }}</td>
+                        <td>{{ speed.duration }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     {% endfor %}
 </body>
