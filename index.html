@@ -3,19 +3,22 @@
 <head>
     <title>Bergen BySykkel Championship</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 50px; }
-        h1 { text-align: center; }
-        .result { text-align: center; font-size: 24px; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        h1 { color: #333; text-align: center; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        .result { text-align: center; font-size: 24px; padding: 10px; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>Bergen BySykkel Championship</h1>
-    <div class="result">
-        {% if fastest_duration %}
-            <p>The fastest duration between <strong>Festplassen</strong> and <strong>C. Sundts gate</strong> is: <strong>{{ fastest_duration }} seconds</strong>.</p>
-        {% else %}
-            <p>No data available for the route between Festplassen and C. Sundts gate.</p>
-        {% endif %}
+    <div class="container">
+        <h1>Bergen BySykkel Championship</h1>
+        <div class="result">
+            {% if fastest_duration %}
+                <p>The fastest duration between <strong>Festplassen</strong> and <strong>C. Sundts gate</strong> is: <strong>{{ fastest_duration }} seconds</strong>.</p>
+            {% else %}
+                <p>No data available for the route between Festplassen and C. Sundts gate.</p>
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>
