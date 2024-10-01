@@ -7,29 +7,21 @@ app = Flask(__name__)
 file_path = r'C:\Users\olavr\bysykkelapp\10.csv'
 df_csv = pd.read_csv(file_path, parse_dates=['started_at', 'ended_at'])
 
-# Calculate the duration in seconds if it's not present
-df_csv['duration_seconds'] = (df_csv['ended_at'] - df_csv['started_at']).dt.total_seconds()
+# Extract one example ride for display
+example_ride = df_csv.iloc[0]  # Select the first ride in the CSV for now
 
-# Function to get the fastest duration between Festplassen and C. Sundts gate
-def get_fastest_duration():
-    # Filter data for the specific route
-    route_data = df_csv[(df_csv['start_station_name'] == 'Festplassen') & 
-                        (df_csv['end_station_name'] == 'C. Sundts gate')]
-    
-    # Check if there are any trips for this route
-    if not route_data.empty:
-        # Get the fastest duration in seconds
-        fastest_trip = route_data.loc[route_data['duration_seconds'].idxmin()]
-        return fastest_trip['duration_seconds']
-    else:
-        return None
+# Prepare the details of the example ride
+example_ride_details = {
+    'start_station_name': example_ride['start_station_name'],
+    'end_station_name': example_ride['end_station_name'],
+    'started_at': example_ride['started_at'],
+    'ended_at': example_ride['ended_at']
+}
 
 @app.route('/')
 def home():
-    # Get the fastest duration between Festplassen and C. Sundts gate
-    fastest_duration_seconds = get_fastest_duration()
-    
-    return render_template('index.html', fastest_duration_seconds=fastest_duration_seconds)
+    # Pass the example ride details to the template
+    return render_template('example_ride.html', ride=example_ride_details)
 
 if __name__ == '__main__':
     app.run(debug=True)
