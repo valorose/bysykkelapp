@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 3 Speeds at Bergen Stations</title>
+    <title>Top 3 Speeds from Bergen Sentrum</title>
 </head>
 <body>
-    <h1>Top Speeds at Bergen Stations</h1>
-    <table border="1">
-        <tr>
-            <th>Station Name</th>
-            <th>Speed</th>
-        </tr>
-        {% for speed in top_speeds.itertuples() %}
-        <tr>
-            <td>{{ speed.station_name }}</td>
-            <td>{{ speed.speed }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <h1>Top 3 Speeds from Bergen Sentrum</h1>
+
+    {% for destination, speeds in top_speeds.items() %}
+        <h2>Destination: {{ destination }}</h2>
+        <table border="1">
+            <tr>
+                <th>Speed (km/h)</th>
+                <th>Duration (seconds)</th>
+            </tr>
+            {% for speed in speeds.itertuples() %}
+            <tr>
+                <td>{{ speed.speed }}</td>
+                <td>{{ speed.duration }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
 </body>
 </html>
