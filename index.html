@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 3 Speeds from Bergen Sentrum</title>
+    <title>Bergen BySykkel Championship</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        h1 { text-align: center; }
+        .result { text-align: center; font-size: 24px; }
+    </style>
 </head>
 <body>
-    <h1>Top 3 Speeds from Bergen Sentrum</h1>
-    
-    {% for destination, speeds in top_speeds.items() %}
-        <h2>Destination: {{ destination }}</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Speed (km/h)</th>
-                    <th>Duration (seconds)</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for speed in speeds.itertuples() %}
-                    <tr>
-                        <td>{{ speed.speed }}</td>
-                        <td>{{ speed.duration }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endfor %}
+    <h1>Bergen BySykkel Championship</h1>
+    <div class="result">
+        {% if fastest_duration %}
+            <p>The fastest duration between <strong>Festplassen</strong> and <strong>C. Sundts gate</strong> is: <strong>{{ fastest_duration }} seconds</strong>.</p>
+        {% else %}
+            <p>No data available for the route between Festplassen and C. Sundts gate.</p>
+        {% endif %}
+    </div>
 </body>
 </html>
