@@ -11,17 +11,18 @@ destinations = ["Fløyen", "Bryggen", "Festplassen"]
 
 # Example function to calculate top speeds for each destination
 def calculate_speeds():
-    # Calculate speed
-    df_csv['speed'] = df_csv['distance'] / df_csv['duration']  # Adjust as needed
+    # Calculate speed (assuming distance is in meters and duration is in seconds)
+    # This assumes you have a distance column; if not, you'll need to adapt this logic
+    df_csv['speed'] = df_csv['distance'] / (df_csv['duration'] / 3600)  # Speed in km/h
 
     # Prepare a dictionary to hold top speeds for each destination
     top_speeds = {}
 
     # Loop through each destination and get the top 3 speeds
     for destination in destinations:
-        filtered_data = df_csv[(df_csv['start_station'] == 'Bergen Sentrum') & 
-                                (df_csv['end_station'] == destination)]
-        top = filtered_data.nlargest(3, 'speed')[['end_station', 'speed']]
+        filtered_data = df_csv[(df_csv['start_station_name'] == 'Bergen Sentrum') & 
+                                (df_csv['end_station_name'] == destination)]
+        top = filtered_data.nlargest(3, 'speed')[['end_station_name', 'speed', 'duration']]
         top_speeds[destination] = top
 
     return top_speeds
