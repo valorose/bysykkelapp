@@ -13,8 +13,8 @@
     <div class="container">
         <h1>Bergen BySykkel Championship</h1>
         <div class="result">
-            {% if fastest_duration %}
-                <p>The fastest duration between <strong>Festplassen</strong> and <strong>C. Sundts gate</strong> is: <strong>{{ fastest_duration }} seconds</strong>.</p>
+            {% if fastest_duration_seconds %}
+                <p>The fastest duration between <strong>Festplassen</strong> and <strong>C. Sundts gate</strong> is: <strong>{{ fastest_duration_seconds }} seconds</strong>.</p>
             {% else %}
                 <p>No data available for the route between Festplassen and C. Sundts gate.</p>
             {% endif %}
